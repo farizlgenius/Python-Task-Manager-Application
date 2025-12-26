@@ -7,7 +7,6 @@ class FileManager:
   def read_file(self):
     with open(self.file_path,'r') as file:
       content = file.read()
-      print(content)
     return json.loads(content)
 
   def write_file(self, data):
