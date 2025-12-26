@@ -1,4 +1,5 @@
 import file_manager as fm
+import task as tk
 
 
 runnning_flag = True
@@ -33,7 +34,8 @@ while runnning_flag:
         print("You selected: Add Task")
         task_list = fm.FileManager(file_path).read_file()
         for task in task_list:
-            print(f"Task ID: {task['id']}, Title: {task['title']}, Due Date: {task['due_date']}")
+            task_obj = tk.Task(task['id'], task['title'], task['description'], task['status'], task['due_date'])
+            print(task_obj)
     elif user_input == '2':
         print("You selected: View Tasks")
     elif user_input == '3':
