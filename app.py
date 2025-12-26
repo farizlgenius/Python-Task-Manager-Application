@@ -15,21 +15,22 @@ while runnning_flag:
 
           Please see menu details below:
           1. Add Task
-          2. View All Tasks
-          4. Complete Task
-          5. Delete Task
-          6. Search Task
-          7. Exit
-          Please select an option from the menu (1,2,3,4).
+          2. View Tasks
+          3. Mark Complete Task
+          4. Delete Task
+          5. Search Task
+          6. Exit
+          Please select an option from the menu (1,2,3,4,5,6).
           
           ####################################
           ''')
+    
     user_input = input("Enter the menu option: ").strip()
 
-    if user_input == '7':
+    if user_input == '6':
         runnning_flag = False
         print("Exiting the program...")
-    elif user_input not in ['1', '2', '3','4','5','6','7']:
+    elif user_input not in ['1', '2', '3','4','5','6']:
         print("Invalid option. Please try again.")
     elif user_input == '1':
         title = input("Enter Task Title: ").strip()
@@ -39,7 +40,12 @@ while runnning_flag:
         task_manager.create_task(title, description, due_date)
         tm.TaskManager().show_all_tasks()
     elif user_input == '2':
-        print("You selected: View Tasks")
         tm.TaskManager().show_all_tasks()
     elif user_input == '3':
-        print("You selected: Delete Task")
+        tm.TaskManager().complete_task()
+    elif user_input == '4':
+        print("You selected: Search Task")
+    elif user_input == '5':
+        print("You selected: Exit")
+    else:
+        print("Invalid option. Please try again.")
