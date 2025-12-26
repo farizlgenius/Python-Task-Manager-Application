@@ -1,14 +1,16 @@
 import json
 
+file_path = 'data.json'
+
 class FileManager:
-  def __init__(self,file_path):
-    self.file_path = file_path
+  def __init__(self):
+    pass
 
   def read_file(self):
-    with open(self.file_path,'r') as file:
+    with open(file_path,'r') as file:
       content = file.read()
     return json.loads(content)
 
   def write_file(self, data):
-    with open(self.file_path, 'w') as file:
+    with open(file_path, 'w') as file:
       json.dump(data, file, indent=4)
