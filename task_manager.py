@@ -81,3 +81,18 @@ class TaskManager:
         print(f"{task['id']:<4} | {task['title']:<20} | {task['description']:<25} | {task['status']:<10} | {task['due_date']:<10}")
 
       print("-" * 78)
+
+    def delete_task(self):
+        self.show_all_tasks()
+        try:
+            input_id = int(input("Enter the Task ID to delete: ").strip())
+        except ValueError:
+            print("Invalid input. Please enter a valid Task ID.")
+            return
+        for task in self.tasks:
+            if task['id'] == input_id:
+                self.tasks.remove(task)
+                fm.FileManager().write_file(self.tasks)
+                print(f"Task with ID {input_id} has been deleted.")
+                return
+        print(f"Task with ID {input_id} not found.")
