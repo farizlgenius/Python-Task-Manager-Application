@@ -47,6 +47,6 @@ while runnning_flag:
         tm.TaskManager().delete_task()
     elif user_input == '5':
         search_query = input("Enter search query: ").strip()
-        # tm.TaskManager().search_task(search_query)
+        tm.TaskManager().search_task(search_query)
     else:
         print("Invalid option. Please try again.")

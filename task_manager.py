@@ -96,3 +96,8 @@ class TaskManager:
                 print(f"Task with ID {input_id} has been deleted.")
                 return
         print(f"Task with ID {input_id} not found.")
+
+
+    def search_task(self, query):
+        matched_tasks = [task for task in self.tasks if query.lower() in task['title'].lower() or query.lower() in task['description'].lower() or query.lower() in task['status'].lower() or query.lower() in task['due_date'].lower()]
+        self.print_table(matched_tasks, f"Search results for '{query}':")
