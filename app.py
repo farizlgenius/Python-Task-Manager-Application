@@ -44,8 +44,9 @@ while runnning_flag:
     elif user_input == '3':
         tm.TaskManager().complete_task()
     elif user_input == '4':
-        print("You selected: Search Task")
+        tm.TaskManager().delete_task()
     elif user_input == '5':
-        print("You selected: Exit")
+        search_query = input("Enter search query: ").strip()
+        # tm.TaskManager().search_task(search_query)
     else:
         print("Invalid option. Please try again.")
