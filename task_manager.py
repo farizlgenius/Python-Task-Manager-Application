@@ -2,6 +2,8 @@ import file_manager as fm
 import task as tk
 import datetime as dt
 
+# Task Manager Class
+# Responsible for managing tasks: create, view, complete, delete, and search
 class TaskManager:
     def __init__(self):
         datas = fm.FileManager().read_file()
@@ -10,6 +12,7 @@ class TaskManager:
                 data['status'] = 'overdue'
         self.tasks = datas
 
+    # Create a new task
     def create_task(self,title, description, due_date):
         id = 0
         for task in self.tasks:
@@ -24,6 +27,7 @@ class TaskManager:
         }
         self.save_task(data)
 
+    # View all tasks categorized by status
     def show_all_tasks(self):
         completed_tasks = [task for task in self.tasks if task['status'].lower() == 'complete']
         overdue_tasks = [task for task in self.tasks if task['status'].lower() == 'overdue']
@@ -32,19 +36,23 @@ class TaskManager:
         self.print_table(overdue_tasks, "Here are all the tasks with OVERDUE status:")
         self.print_table(pending_tasks, "Here are all the tasks with PENDING status:")
 
+    # View tasks by specific status (Completed  )
     def show_completed_tasks(self):
         completed_tasks = [task for task in self.tasks if task['status'].lower() == 'complete']
         self.print_table(completed_tasks, "Here are all the tasks with COMPLETE status:")
 
+    # View tasks by specific status (Overdue)
     def show_overdue_tasks(self):
         overdue_tasks = [task for task in self.tasks if task['status'].lower() == 'overdue']
         self.print_table(overdue_tasks, "Here are all the tasks with OVERDUE status:")
 
+    # View tasks by specific status (Pending)
     def show_pending_tasks(self):
         pending_tasks = [task for task in self.tasks if task['status'].lower() == 'pending']
         self.print_table(pending_tasks, "Here are all the tasks with PENDING status:")
         return pending_tasks.__len__()
 
+    # Mark a task as complete
     def complete_task(self):
         num = self.show_pending_tasks()
         if num == 0:
@@ -62,10 +70,12 @@ class TaskManager:
                 return
         print(f"Task with ID {input_id} not found.")
 
+    # Save task to the file
     def save_task(self, task):  
         self.tasks.append(task)
         fm.FileManager().write_file(self.tasks)
 
+    # Print tasks in a formatted table
     def print_table(self,tasks, title):
       if not tasks:
         print(f"\n{title}")
@@ -82,6 +92,7 @@ class TaskManager:
 
       print("-" * 78)
 
+    # Delete a task by ID
     def delete_task(self):
         self.show_all_tasks()
         try:
@@ -98,6 +109,7 @@ class TaskManager:
         print(f"Task with ID {input_id} not found.")
 
 
+    # Search tasks by title, description, status, or due date
     def search_task(self, query):
         matched_tasks = [task for task in self.tasks if query.lower() in task['title'].lower() or query.lower() in task['description'].lower() or query.lower() in task['status'].lower() or query.lower() in task['due_date'].lower()]
         self.print_table(matched_tasks, f"Search results for '{query}':")

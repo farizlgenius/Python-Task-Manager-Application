@@ -1,3 +1,5 @@
+
+# Class to represent a Task
 class Task:
   def __init__(self, id, title, description, status, due_date):
     self.id = id
